@@ -48,5 +48,5 @@ And now pewpew animation!:
 # Files description
 
 1) train.ipynb - file with model and visualizing predictions.
-2) pnp.ipynb - pnp solution and animation part. 
+2) pnp.ipynb - pnp solution and the animation part. 
 
