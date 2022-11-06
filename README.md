@@ -1,6 +1,6 @@
 # X-wing-model-tracking
 Abstract: this repo includes a pipeline using tf.keras for training UNet for the problems of X-wing keypoints detection and pnp.
-Moreover, weights and model are provided. It's just an example how to solve it, here is no dataset or EDA (already done in reference.ipynb) due to the fact that this is a test task. Also model is too big  so can not leave it here, here is a link to LINKdownloadhttps://drive.google.com/file/d/1oaSXIrxy6RmTpe6cyQqDBay7g-0Su8bl/view?usp=share_link
+Moreover, weights and model are provided. It's just an example how to solve it, here is no dataset or EDA (already done in reference.ipynb) due to the fact that this is a test task. Also model is too big  so can not leave it here, here is a link to [download](https://drive.google.com/file/d/1oaSXIrxy6RmTpe6cyQqDBay7g-0Su8bl/view?usp=share_link)
 
 # Main Idea
 I suggest using Gaussian distribution to create 2D Gaussian point:
@@ -33,7 +33,7 @@ I have cleared some outputs in process so can not show it with screenshots, but 
 | ------ | ------ | ------ | ------ | ------ | ------ |
 | Unet&efficientnetb0 | 0.00078 | (256x256)  | 15 | len(X_train) // BATCH_SIZE - 1| 16 | Adam, lr = 1e-3 |
 
-***Important***: while training learning rate must be reduced with ReduceLROnPlateau, if you try to train this model yourself about 10 epochs you will see why, as german people say, ***WICHTIG!***.
+***Important***: while training learning rate must be reduced with ReduceLROnPlateau, if you try to train this model yourself about 10 epochs you will see why, as german people say, ***WICHTIG!***
 
 Examples of predicted heatmaps: 
 
