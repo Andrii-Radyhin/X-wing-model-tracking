@@ -10,30 +10,28 @@ Next, i created for each point a heatmap, that looks like this (albumentations t
 
 ![alt text](images/heatmaps_ex.jpg)
 
-But here is one problem: where and when we create heatmaps, all heatmaps once or in process of generating batches?
-In my opinion the better way here is to create a heatmaps while yielding batches due to the fact that i use albumentations to transform images and keypoints for better performance. In case of creating all heatmaps once it's about 5 millions or more heatmaps.
-Now this task reduced to some type of segmentation, so we can use Unet model to predict 2D points. In this case i suggest to use MSE loss function. Also, i do not see any suitable keras metrics for this case. For me it's enought to see val_loss value, but if needed here is implemetention of this metric in pytorch (used it earlier) with usage of heatmaps2argmax in utils.py:
+But here is one problem: where and when do we create heatmaps, all heatmaps at once or in process of generating batches?
+
+In my opinion, the better way here is to create a heatmap while yielding batches, due to the fact, that I use albumentations to transform images and keypoints for better accuracy. In the case of creating all heatmaps at once, it's about 5 million or more heatmaps.
+Now this task has been reduced to some type of segmentation, we can use Unet model to predict 2D points. In this case, I suggest using the MSE loss function. Also, I do not see any suitable keras metrics for this case. For me, it's enough to see the val_loss value, but if needed, here is the implementation of this metric in PyTorch (I used it earlier) with usage of heatmaps2argmax in utils.py:
 
 ```sh
 def nmae_argmax(preds, targs):
-    # Note that our function is passed two heat maps, which we'll have to
-    # decode to get our points. Adding one and dividing by 2 puts us
-    # in the range 0...1 so we don't have to rescale for our percentual change.
     preds = 0.5 * (TensorBase(heatmap2argmax(preds, scale=True)) + 1)
     targs = 0.5 * (TensorBase(heatmap2argmax(targs, scale=True)) + 1)
 ```
 
-Next, pnp part, i have created pnp opencv solution to get corrdinates in camera coordinate frame just to show that i understand how it works. Animation created by usage of provided function.
+Next, for the pnp part, I have created a pnp openCV solution to get coordinates in the camera coordinate frame just to show that i understand how it works. Animation created by the usage of the provided function.
 
 # Training&Results
 
-I have cleared some outputs in process so can not show it with screenshots, but it trained 15 epochs with steps_per_epoch = all over whole dataset, here is a table for better understanding:
+I have cleared some outputs in process, so, I cannot show them with screenshots, but it trained 15 epochs with steps_per_epoch = all over the whole dataset, here is a table for better understanding:
 
 | Architecture | MSE loss | Input & Heatmap Resolution | Epochs | Steps | batch | optimizer |
 | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
 | Unet&efficientnetb0 | 0.00078 | (256x256)  | 15 | len(X_train) // BATCH_SIZE - 1| 16 | Adam, lr = 1e-3 |
 
-***Important***: while training learning rate must be reduced with ReduceLROnPlateau, if you try to train this model yourself about 10 epochs you will see why, as german people say, ***WICHTIG!***
+***Important***: While training, the learning rate must be reduced with ReduceLROnPlateau; if you try to train this model yourself for about 10 epochs, you will see why, as the Germans say, "Wichtig!"
 
 Examples of predicted heatmaps: 
 
