@@ -29,13 +29,19 @@ Next, pnp part, i have created pnp opencv solution to get corrdinates in camera 
 
 I have cleared some outputs in process so can not show it with screenshots, but it trained 15 epochs with steps_per_epoch = all over whole dataset, here is a table for better understanding:
 
-TABLE
+| Architecture | MSE loss | Input & Heatmap Resolution | Epochs | Steps | batch | optimizer |
+| ------ | ------ | ------ | ------ | ------ | ------ |
+| Unet&efficientnetb0 | 0.00078 | (256x256)  | 15 | len(X_train) // BATCH_SIZE - 1| 16 | Adam, lr = 1e-3 |
 
-IMGRESULTS
+***Important***: while training learning rate must be reduced with ReduceLROnPlateau, if you try to train this model yourself about 10 epochs you will see why, as german people say, ***WICHTIG!***.
+
+Examples of predicted heatmaps: 
+
+![alt text](images/preds_ex.jpg)
 
 And now pewpew animation!:
 
-gif
+![alt text](anim.gif)
 
 # Files description
 
