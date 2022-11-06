@@ -14,14 +14,14 @@ But here is one problem: where and when we create heatmaps, all heatmaps once or
 In my opinion the better way here is to create a heatmaps while yielding batches due to the fact that i use albumentations to transform images and keypoints for better performance. In case of creating all heatmaps once it's about 5 millions or more heatmaps.
 Now this task reduced to some type of segmentation, so we can use Unet model to predict 2D points. In this case i suggest to use MSE loss function. Also, i do not see any suitable keras metrics for this case. For me it's enought to see val_loss value, but if needed here is implemetention of this metric in pytorch (used it earlier) with usage of heatmaps2argmax in utils.py:
 
-CODE
+```sh
 def nmae_argmax(preds, targs):
     # Note that our function is passed two heat maps, which we'll have to
     # decode to get our points. Adding one and dividing by 2 puts us
     # in the range 0...1 so we don't have to rescale for our percentual change.
     preds = 0.5 * (TensorBase(heatmap2argmax(preds, scale=True)) + 1)
     targs = 0.5 * (TensorBase(heatmap2argmax(targs, scale=True)) + 1)
-CODE
+```
 
 Next, pnp part, i have created pnp opencv solution to get corrdinates in camera coordinate frame just to show that i understand how it works. Animation created by usage of provided function.
 
