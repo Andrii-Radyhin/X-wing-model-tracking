@@ -17,8 +17,8 @@ Now this task has been reduced to some type of segmentation, we can use Unet mod
 
 ```sh
 def nmae_argmax(preds, targs):
-    preds = 0.5 * (TensorBase(heatmap2argmax(preds, scale=True)) + 1)
-    targs = 0.5 * (TensorBase(heatmap2argmax(targs, scale=True)) + 1)
+    preds = 0.5 * (TensorBase(heatmap2argmax(preds)) + 1)
+    targs = 0.5 * (TensorBase(heatmap2argmax(targs)) + 1)
 ```
 
 Next, for the pnp part, I have created a pnp openCV solution to get coordinates in the camera coordinate frame just to show that i understand how it works. Animation created by the usage of the provided function.
