@@ -8,7 +8,7 @@ I suggest using Gaussian distribution to create 2D Gaussian point:
 So, to create bbox points in 2D, points are extracted with help of project_points function in utils.py.
 Next, i created for each point a heatmap, that looks like this:
 
-![alt text](images/main_database.PNG)
+![alt text](images/heatmaps_ex.jpg)
 
 But here is one problem: where and when we create heatmaps, all heatmaps once or in process of generating batches?
 In my opinion the better way here is to create a heatmaps while yielding batches due to the fact that i use albumentations to transform images and keypoints for better performance. In case of creating all heatmaps once it's about 5 millions or more heatmaps.
