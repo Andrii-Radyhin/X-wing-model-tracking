@@ -6,7 +6,7 @@ Moreover, weights and model are provided. It's just an example how to solve it, 
 I suggest using Gaussian distribution to create 2D Gaussian point:
 
 So, to create bbox points in 2D, points are extracted with help of project_points function in utils.py.
-Next, i created for each point a heatmap, that looks like this:
+Next, i created for each point a heatmap, that looks like this (albumentations transform already applied):
 
 ![alt text](images/heatmaps_ex.jpg)
 
