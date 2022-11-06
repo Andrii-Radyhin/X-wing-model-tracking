@@ -37,6 +37,10 @@ Examples of predicted heatmaps:
 
 ![alt text](images/preds_ex.jpg)
 
+Predicted keypoints closer:
+
+![alt text](images/keypoints_pred.PNG)
+
 And now pewpew animation!:
 
 ![alt text](anim.gif)
